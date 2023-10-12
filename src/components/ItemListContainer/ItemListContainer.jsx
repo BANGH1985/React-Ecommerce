@@ -5,10 +5,10 @@ function ItemListContainer ({greeting = "texto home"}) {
                 <p>{greeting}</p>
             </div>
             <div>   
-                <img className="imgRopa" src="/public/assets/remera.jpg" />
-                <img className="imgRopa" src="/public/assets/pantalon.jpg" />
-                <img className="imgRopa" src="/public/assets/gorra.jpg" />
-                <img className="imgRopa" src="/public/assets/gorro.jpg" />
+                <img className="imgRopa" src="/assets/remera.jpg" />
+                <img className="imgRopa" src="/assets/pantalon.jpg" />
+                <img className="imgRopa" src="/assets/gorra.jpg" />
+                <img className="imgRopa" src="/assets/gorro.jpg" />
             </div>
         </>  
     )
