@@ -1,6 +1,10 @@
+import { BrowserRouter, Navigate, Route, Router, Routes } from 'react-router-dom';
+import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
+import { CartContainer } from './components/CartContainer/CartContainer';
 
 import NavBar from './components/NavBar/NavBar';
-import TextoHome from './components/ItemListContainer/ItemListContainer';
+import ProductListcontainer from './components/ItemListContainer/ItemListContainer';
+
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,12 +16,17 @@ function App() {
 
   return (
     <>
-      <div>
+    <BrowserRouter>
         <NavBar />
-        <TextoHome greeting='GALERIA' />
-      </div>
+          <Routes>  
+            <Route path='/' element={<ProductListcontainer greeting='GALERIA' />} />
+            <Route path='/detail/:pid' element={<ItemDetailContainer/>} />
+            <Route path='/cart' element={<CartContainer/>} />
+            <Route path='*' element={<Navigate to='/'/> }/>
+          </Routes>
+    </BrowserRouter>
     </>
   )
 }
 
-export default App
+export default App 

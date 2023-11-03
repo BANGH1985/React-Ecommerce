@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { CartWidget } from '../CartWidget/CartWidget';
 import  Imagen from '../../assets/descarga.jpg'
+import { Link } from 'react-router-dom';
 
 
 function NavBar () {
@@ -11,7 +12,7 @@ function NavBar () {
         <Navbar collapseOnSelect expand="lg" className="bg-dark text-light navbar-dark">
             <Container>
                 <img className='imgLogo' src= {Imagen} />
-                <Navbar.Brand href="#home">DREAMS</Navbar.Brand>
+                <Link to="/">DREAMS</Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -23,9 +24,9 @@ function NavBar () {
                     <NavDropdown.Item href="#action/3.3">Diseñador</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
-                <Nav>
+                <Link to="/cart">
                     <CartWidget />
-                </Nav>
+                </Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
