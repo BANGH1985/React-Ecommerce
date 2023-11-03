@@ -8,10 +8,15 @@ export const useCounter = (min, max) => {
         }
     }
     const handleResta = () => { 
-        if (count < min) {  
+        if (count > min) {  
             setCount(count-1)
         }
     }
+
+    const handleOnAdd = ()=>{   
+        onAdd(count)
+    }
+
     return {    
         count,
         handleSume,

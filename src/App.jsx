@@ -19,7 +19,8 @@ function App() {
     <BrowserRouter>
         <NavBar />
           <Routes>  
-            <Route path='/' element={<ProductListcontainer greeting='GALERIA' />} />
+            <Route path='/' element={<ProductListcontainer greeting='BIENVENIDOS'/>} />
+            <Route path='/category/:cid' element={<ProductListcontainer/>} />
             <Route path='/detail/:pid' element={<ItemDetailContainer/>} />
             <Route path='/cart' element={<CartContainer/>} />
             <Route path='*' element={<Navigate to='/'/> }/>

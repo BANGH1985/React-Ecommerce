@@ -4,30 +4,23 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { CartWidget } from '../CartWidget/CartWidget';
 import  Imagen from '../../assets/descarga.jpg'
-import { Link } from 'react-router-dom';
+import { Link,NavLink  } from 'react-router-dom';
 
 
 function NavBar () {
     return (
-        <Navbar collapseOnSelect expand="lg" className="bg-dark text-light navbar-dark">
+        <Navbar collapseOnSelect expand="lg" className="bg-light text-dark navbar-light">
             <Container>
                 <img className='imgLogo' src= {Imagen} />
-                <Link to="/">DREAMS</Link>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                    <Nav.Link href="#features">Conocenos</Nav.Link>
-                    <Nav.Link href="#pricing">Contacto</Nav.Link>
-                    <NavDropdown title="CATEGORIAS" id="collapsible-nav-dropdown-" data-bs-theme="dark">
-                    <NavDropdown.Item href="#action/3.1">Remeras</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.2">Pantalones</NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">Diseñador</NavDropdown.Item>
-                    </NavDropdown>
-                </Nav>
-                <Link to="/cart">
-                    <CartWidget />
-                </Link>
+                <NavLink className={({isActive})=> isActive ? 'btn btn-dark' : 'btn' } to="/">DREAMS</NavLink>
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <NavLink className={({isActive})=> isActive ? 'btn btn-dark' : 'btn' } to="/category/remeras">Remeras</NavLink>
+                    <NavLink className={({isActive})=> isActive ? 'btn btn-dark' : 'btn' } to="/category/pantalones">Pantalones</NavLink>
+                    <NavLink className={({isActive})=> isActive ? 'btn btn-dark' : 'btn' } to="/category/gorras">Gorras</NavLink>
                 </Navbar.Collapse>
+                <NavLink to="/cart">
+                    <CartWidget />
+                </NavLink>
             </Container>
         </Navbar>
     );

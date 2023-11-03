@@ -9,15 +9,15 @@ import { Link } from 'react-router-dom';
 
 const prouctFiltered = ({products, filterState, handleFilterChange}) => (   
     <>
-        <div>   
+        {/* <div>   
             <label>Buscar </label>
             <input className='form-control' type="text" value='' onChange={handleFilterChange} />
-        </div>
+        </div> */}
         {
             filterState === '' ? 
                                     products.map(product =>      
-                                        <div key={product.id} className="card w-25 h-100 ">   
-                                            <Card>
+                                        <div key={product.id} className='row' >   
+                                            <Card className="w-25">
                                                 <Card.Img variant="top" src={product.image} />
                                                 <Card.Body>
                                                     <Card.Title>{product.name}</Card.Title>
@@ -39,10 +39,10 @@ const prouctFiltered = ({products, filterState, handleFilterChange}) => (
                                     )
                                 :
                                     products
-                                        .filter(prod => prod.name.tolowerCase().includes(filterState.tolowerCase()))
+                                        .filter(prod => products.name.tolowerCase().includes(filterState.tolowerCase()))
                                         .map(product =>      
-                                            <div key={product.id} className="card w-25">   
-                                                <Card>
+                                            <div key={product.id} className='row' >   
+                                                <Card className="w-25">
                                                     <Card.Img  variant="top" src={product.image} />
                                                     <Card.Body>
                                                         <Card.Title>{product.name}</Card.Title>
@@ -53,7 +53,9 @@ const prouctFiltered = ({products, filterState, handleFilterChange}) => (
                                                         {product.price}
                                                     </ListGroup>
                                                     <Card.Body>
-                                                        <Button variant="dark">detalle</Button>
+                                                        <Link to={`/detail/${product.id}`}>  
+                                                            <Button variant="dark">detalle</Button>
+                                                        </Link>
                                                         <br />
                                                         <Button variant="dark">Comprar</Button>
                                                     </Card.Body>

@@ -10,13 +10,13 @@ const products = [
     {id: '9', name: "Gorra 9", category: "gorras", price: 3500, stock: 600, description: "gorras", image: "/public/assets/gorra fornite.jpg"},
     {id: '10', name: "Gorra 10", category: "gorras", price: 3500, stock: 600, description: "gorras", image: "/public/assets/gorra freefire.jpg"},
     {id: '11', name: "Gorra 11", category: "gorras", price: 3500, stock: 600, description: "gorras", image: "/public/assets/gorra joistick.jpg"},
-    {id: '12', name: "Gorro 12", category: "gorros", price: 3500, stock: 600, description: "gorro", image: "/public/assets/gorro.jpg"}
+    {id: '12', name: "Gorro 12", category: "gorras", price: 3500, stock: 600, description: "gorro", image: "/public/assets/gorro.jpg"}
 ]
 export const mFetch = (id) => {   
     return new Promise (( res, rej ) => {
         setTimeout(()=> {
             res(id ? products.find(prod => prod.id === id) :products)
-        }, 1000)
+        }, 500)
         
     })
 }

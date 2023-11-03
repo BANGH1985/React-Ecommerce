@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useCounter } from "../hooks/hooks"
 
-export const Itemcounter = ({initial=1, stock=500, onAdd}) => {  
+export const Itemcounter = ({initial=1, stock=10, onAdd}) => {  
     const {count, handleSume, handleResta} = useCounter(initial, stock)
 
     const handleOnAdd = ()=> {  
