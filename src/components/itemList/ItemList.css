@@ -4,6 +4,17 @@
 }
 
 .timg{  
-    width:250px;
-    padding: 10px;
+    width: 75px;
+    padding: 75px;
+}
+
+.description{   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedorImagen{  
+    width: 200px;
+    height: 300px;
 }

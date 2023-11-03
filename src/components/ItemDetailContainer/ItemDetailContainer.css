@@ -1,0 +1,8 @@
+.cardDetail{    
+    margin:  50px;
+    align-content: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
