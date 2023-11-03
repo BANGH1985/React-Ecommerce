@@ -3,6 +3,7 @@ import { mFetch } from "../../helpers/mFetch"
 import { ItemList } from "../itemList/ItemList";
 import { useParams } from "react-router-dom";
 
+
 import Itemcounter from "../itemCounter/itemCounter";
 
 import './ItemListContainer.css'
@@ -32,7 +33,9 @@ function ItemListContainer ({greeting = "texto home"}) {
 
     return (  
         <>
-            <ItemList products={products}/>
+            <div className="row justify-content-center align-items-center contenedor" >    
+                <ItemList products={products}/>
+            </div>
         </>  
     )
 }
