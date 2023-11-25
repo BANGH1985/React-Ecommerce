@@ -1,18 +1,13 @@
 
 import { Filter } from './filter';
 import { Link } from 'react-router-dom';
-import Itemcounter from '../itemCounter/itemCounter';
 import "./ItemList.css"
 
 
 
 
-const prouctFiltered = ({products, filterState, handleFilterChange}) => (   
+const prouctFiltered = ({products, filterState}) => (   
     <>
-        {/* <div>   
-            <label>Buscar </label>
-            <input className='form-control' type="text" value='' onChange={handleFilterChange} />
-        </div> */}
         {
             filterState === '' ? 
                                     products.map(product =>
