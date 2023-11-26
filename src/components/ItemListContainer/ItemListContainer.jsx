@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { ItemList } from "../itemList/ItemList";
 import { useParams } from "react-router-dom";
-import { collection, getDoc, getFirestore } from "firebase/firestore"
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 
 import './ItemListContainer.css'
 
@@ -10,29 +10,25 @@ function ItemListContainer () {
     const [loading, setLoading ] = useState(true)
     
     const {cid} = useParams()
-    
-    // useEffect(()=> {
-    //     if (cid) { 
-    //         mFetch()
-    //         .then(resultado => setProducts(resultado.filter(product => product.category === cid)))
-    //         .catch(error => console.log(error)) 
-    //         .finally(() => setLoading(false))
-    //     }else{  
-    //         mFetch()
-    //         .then(resultado => setProducts(resultado))
-    //         .catch(error => console.log(error))
-    //         .finally(() => setLoading(false))
-    //     }
-    // }, [cid])
 
-    useEffect(()=>{ 
-        const dbFirestore = getFirestore()
-        const queryCollection = collection(dbFirestore, "products")
-        getDoc(queryCollection)
-        .then(res => setProducts(res.docs.map(product => ({ id: res.id , ...res.data()}))))
-        .catch(err => console.lag(err))
-        .finally (() => setLoading(false))
-    })
+    useEffect(() => {
+        if (cid) {
+            const dbFirestore = getFirestore();
+            const queryCollection = collection(dbFirestore, "products")
+            const queryFilter = query(queryCollection, where("category", "==", cid))
+            getDocs(queryFilter)
+            .then(res => {setProducts(res.docs.map(product => ({id: product.id, ...product.data()})))})
+            .catch((err) => console.log(err))
+            .finally(() => setLoading(false));
+        } else {
+            const dbFirestore = getFirestore();
+            const queryCollection = collection(dbFirestore, "products")
+            getDocs(queryCollection)
+                .then(res => setProducts(res.docs.map(product => ({id: product.id, ...product.data()}))))
+                .catch((err) => console.log(err))
+                .finally(() => setLoading(false));
+        }
+    }, [cid]);
 
     return (  
         <>  
