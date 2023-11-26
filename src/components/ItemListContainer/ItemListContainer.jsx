@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
-import { ItemList } from "../itemList/ItemList";
 import { useParams } from "react-router-dom";
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 
+import { ItemList } from "../itemList/ItemList";
 import './ItemListContainer.css'
+
+
 
 function ItemListContainer () {
     const [products, setProducts] = useState([])
@@ -11,24 +13,24 @@ function ItemListContainer () {
     
     const {cid} = useParams()
 
-    useEffect(() => {
+    useEffect(() =>{
         if (cid) {
-            const dbFirestore = getFirestore();
+            const dbFirestore = getFirestore()
             const queryCollection = collection(dbFirestore, "products")
             const queryFilter = query(queryCollection, where("category", "==", cid))
             getDocs(queryFilter)
             .then(res => {setProducts(res.docs.map(product => ({id: product.id, ...product.data()})))})
             .catch((err) => console.log(err))
-            .finally(() => setLoading(false));
+            .finally(() => setLoading(false))
         } else {
-            const dbFirestore = getFirestore();
+            const dbFirestore = getFirestore()
             const queryCollection = collection(dbFirestore, "products")
             getDocs(queryCollection)
                 .then(res => setProducts(res.docs.map(product => ({id: product.id, ...product.data()}))))
                 .catch((err) => console.log(err))
-                .finally(() => setLoading(false));
+                .finally(() => setLoading(false))
         }
-    }, [cid]);
+    }, [cid])
 
     return (  
         <>  

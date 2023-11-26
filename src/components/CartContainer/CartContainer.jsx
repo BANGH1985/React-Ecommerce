@@ -1,16 +1,14 @@
 import { useCartContext } from "../../contexts/CartContext"
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export const CartContainer = () => {    
-    const {cartList, empyCart, totalPrice} = useCartContext()
+    const {cartList, emptyCart, totalPrice, totalQuantity, removeSingleItem} = useCartContext()
     const handleOrders = () => {
         const order = {}
-        order.buyer = { name: 'federico', phone: '321321321', email: 'f@gmail.com' }
-
-        order.items = cartList.map(( { id, price, cant, name } ) => ( { id: id, price: price, name: name, cant: cant} ) )
+        order.buyer = {}
+        order.items = cartList.map(({id, price, cant, name}) => ({id: id, price: price, name: name, cant: cant}))
         order.total = totalPrice()  
-
         const db = getFirestore()
-
         const queryCollection = collection(db, 'orders')
 
         addDoc(queryCollection, order)
@@ -20,18 +18,23 @@ export const CartContainer = () => {
     return( 
         <div>   
             {cartList.map(product => 
-                                    <div>  
-                                        <img className="w-25" src={product.img} alt="image" />
+                                    <div key={product.id}>  
+                                        <img className="w-25" src={product.image} alt="image" />
                                         Detalle: {product.name} -    
                                         Precio: {product.price} -   
-                                        Cantidad {product.cant} -
+                                        Cantidad {product.cant} -  
+                                        <button className="btn btn-outline-dark botonItem" onClick={() => removeSingleItem(product.id)}>X</button>
                                     </div>
             )}
+            Cantidad total : {totalQuantity()}
+            <br /> 
             Precio Total: {totalPrice()}
             <br />  
-            <button className="btn btn-outline-dark" onClick={empyCart}>Borrar Carrito</button>
+            <button className="btn btn-outline-dark" onClick={emptyCart}>Borrar Carrito</button>
             <br />
             <button className="btn btn-outline-dark" onClick={handleOrders}>Comprar</button>
         </div>
     )
 }
+
+

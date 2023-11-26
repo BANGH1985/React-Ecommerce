@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import { useCounter } from "../hooks/hooks"
 
 export const Itemcounter = ({initial=1, stock=10, onAdd}) => {  
@@ -7,6 +7,7 @@ export const Itemcounter = ({initial=1, stock=10, onAdd}) => {
     const handleOnAdd = ()=> {  
         onAdd(count)
     }
+    
     return (    
         <>
             <div>   

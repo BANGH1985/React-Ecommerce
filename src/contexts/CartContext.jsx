@@ -1,58 +1,55 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState } from "react";
 
 
 export const CartContext = createContext([])
 
 export const useCartContext = () => useContext(CartContext)
 
-export const CartContextProvider = ({children}) => {    
+export const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
-    
-    const IsInCart = (id) => {  
-        return cartList.find(product => product.id === id)
-    }
 
-    const AddToCart = (product, cant) => {   
-        if(IsInCart(product.id)){   
-            const index = cartList.findIndex(prod => prod.id === product.id)
-            const aux = [...cartList]
-            aux[index].cant = cant
-            setCartList(aux)
-        }else { 
-            const newProduct = {    
-                ...product, 
-                cant: cant
-            }
-            setCartList([...cartList, newProduct])
+    const AddToCart = (product) => {
+        const existingProductIndex = cartList.findIndex(
+            (item) => item.id === product.id
+        );
+
+        if (existingProductIndex !== -1) {
+            const updatedCart = [...cartList]
+            updatedCart[existingProductIndex].cant += product.cant
+            setCartList(updatedCart)
+        } else {
+            setCartList([...cartList, product])
         }
     }
-    const empyCart = () => {    
+    const totalQuantity = () => {
+        return cartList.reduce((total, product) => total + product.cant, 0)
+    }
+    const totalPrice = () => {           
+        return cartList.reduce((acum, prod) => acum + (prod.cant * prod.price), 0)     
+    }
+    const emptyCart = () => {
         setCartList([])
     }
-
-    const removeItem = (id) => {    
-        setCartList(cartList.filter(prod => prod.id !== id))
+    const removeSingleItem = (productId) => {
+        const updatedCart = cartList.map((product) => {
+            if (product.id === productId && product.cant > 0) {
+                return { ...product, cant: product.cant - 1 }
+            }
+            return product
+        });
+        setCartList(updatedCart.filter((product) => product.cant > 0))
     }
-    const getItemQuantity = () => { 
-        return cartList.reduce ((acum, prod) => acum +- prod.cant, 0)
-    }
-    const totalPrice = () => {  
-        return cartList.reduce((acum, prod) => acum + (prod.cant * prod.price), 0)
-    }
-    
-    return( 
-        <CartContext.Provider value={{  
-            cartList, 
-            IsInCart,
+    return (
+        <CartContext.Provider value= {{
+            cartList,
             AddToCart,
-            empyCart,
-            removeItem,
-            getItemQuantity,
-            totalPrice
-        }}> 
+            emptyCart,
+            totalQuantity,
+            totalPrice,
+            removeSingleItem
+        }}>
             {children}
         </CartContext.Provider>
     )
+
 }
-
-
