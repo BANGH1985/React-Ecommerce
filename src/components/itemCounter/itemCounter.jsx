@@ -15,9 +15,9 @@ export const Itemcounter = ({initial=1, stock=10, onAdd}) => {
                     <p>{count}</p>
                 </div>
                 <div>   
-                    <button onClick={handleSume}> + </button>
-                    <button onClick={handleResta}> - </button>
-                    <button onClick={handleOnAdd}>Agregar al Carrito</button>
+                    <button className="btn btn-outline-dark" onClick={handleSume}> + </button>
+                    <button className="btn btn-outline-dark" onClick={handleResta}> - </button>
+                    <button className="btn btn-outline-dark" onClick={handleOnAdd}>Agregar al Carrito</button>
                 </div>
             </div>
         </>
