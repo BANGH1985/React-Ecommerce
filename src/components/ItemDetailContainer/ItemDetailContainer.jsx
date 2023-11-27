@@ -25,7 +25,7 @@ export const ItemDetailContainer = () => {
     return (
         <> 
             {
-                loading ? <img src="https://cdn.dribbble.com/users/2973561/screenshots/5757826/media/221d6bfc1960ab98a7585fcc2a4d0181.gif" alt="loading" />
+                loading ? <img src="https://media.tenor.com/0iK9a1WkT40AAAAC/loading-white.gif" alt="loading" />
                 :
                 <ItemDetail key={product.id} product={product}/>
             }

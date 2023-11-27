@@ -1,14 +1,19 @@
+
 import { useCartContext } from "../../contexts/CartContext"
+import "./ItemCart.css"
 
 export const ItemCart = ({product}) => { 
     const {removeSingleItem} = useCartContext()
-    return (    
-        <div >  
-            <img className="w-15 timg" src={product.image} alt="image" />
-            {product.name} -    
-            Precio: {product.price} -   
-            Cantidad Seleccionada  {product.cant} -  
-            <button className="btn btn-outline-dark botonItem" onClick={() => removeSingleItem(product.id)}>X</button>
-        </div>
+    return (   
+        <>  
+            <div className="contenedorItemCart">  
+                <img className="w-15 timgcart" src={product.image} alt="image" />
+                <div>{product.name}</div>   
+                <div>Precio: {product.price}</div>    
+                <div>Cantidad Seleccionada  {product.cant}</div>
+                <button className="btn btn-outline-dark botonItem" onClick={() => removeSingleItem(product.id)}>X</button>
+            </div>
+            
+        </> 
     )
 }

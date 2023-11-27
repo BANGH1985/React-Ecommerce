@@ -4,7 +4,6 @@
 }
 
 .timg{  
-    width: 75px;
     padding: 75px;
 }
 
@@ -14,7 +13,3 @@
     align-items: center;
 }
 
-.contenedorImagen{  
-    width: 200px;
-    height: 300px;
-}
