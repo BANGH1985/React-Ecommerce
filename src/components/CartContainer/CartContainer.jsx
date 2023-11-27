@@ -3,6 +3,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { ItemCart } from "../ItemCart/ItemCart";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./CartContainer.css"
 
 export const CartContainer = () => {  
     const [formData, setFormData] = useState({  
@@ -59,14 +60,16 @@ export const CartContainer = () => {
                         {totalPrice() != 0 && <p>Precio Total ${totalPrice()}</p>}
                         <br />  
                     </div>
-                    <div>   
-                        <form className="text-center w-50" onSubmit={handleOrders}>  
-                            <input className="form-control" type="text" name="name" onChange={handleOnChange} value={formData.name} />
-                            <input className="form-control"  type="text" name="phone" onChange={handleOnChange} value={formData.phone} />
-                            <input className="form-control"  type="text" name="email" onChange={handleOnChange} value={formData.email}/>
+                    <div className="text-center " style={{display: "flex", flexDirection: "row", justifyContent: "center"}} >   
+                        <form className="text-centers w-50" onSubmit={handleOrders}>  
+                            <input className="form-control text-center" type="text" placeholder="Ingrese Nombre Completo" name="name" onChange={handleOnChange} value={formData.name} />
+                            <input className="form-control text-center"  type="text" name="phone" placeholder="Ingrese Numero de Telefono" onChange={handleOnChange} value={formData.phone} />
+                            <input className="form-control text-center"  type="text" name="email" placeholder="Ingrese email de Contacto" onChange={handleOnChange} value={formData.email}/>
+                            <br />
                             <button className="btn btn-outline-dark" >Comprar</button>
                         </form>
                     </div>
+                    <br />
                     <button className="btn btn-outline-dark" onClick={emptyCart}>Borrar Carrito</button>    
                 </>
             }

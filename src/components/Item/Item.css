@@ -1,0 +1,19 @@
+.timg{  
+    padding: 15px;
+}
+.estiloCard{    
+    margin: 10px;
+}
+
+.name{  
+    margin: 10px;
+}
+
+.description{   
+    display: flex;
+    flex-direction: column
+}
+
+.contenedor{    
+    margin: 20px;
+}
