@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-Demo: 
+Demo: https://ecommer-dreams-reactjs.netlify.app/
 
 Funcion: Pagina que simula una tienda online de ropa
 
@@ -19,6 +19,7 @@ Funcion: Pagina que simula una tienda online de ropa
 | firebase: 10.6.0| Base de datos  |
 | react-bootstrap: 2.9.0 | Estilado de app ecommerce |
 | react-router-dom: 6.17.0 | Enrutado de componentes |
+| sweetalert2: 11.10.1 | Estilado de alertas |
 
 Datos de Firebase:
 
