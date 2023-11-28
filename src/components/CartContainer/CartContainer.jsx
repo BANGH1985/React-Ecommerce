@@ -15,6 +15,19 @@ export const CartContainer = () => {
     })
     const [isId, setIsId] = useState("")
     const {cartList, emptyCart, totalPrice, totalQuantity} = useCartContext()
+    
+    const isValidPhone = (phoneNumber) => {
+    const phoneRegex = /^[0-9]+$/
+        if (!phoneRegex.test(phoneNumber)) {
+            Swal.fire({
+                title: "¡Error!",
+                text: "El número de teléfono debe contener solo números.",
+                icon: "error",
+            })
+            return false
+        }
+        return true
+    }
     const handleOrders = (evt) => {
         evt.preventDefault()
         const order = {}
@@ -30,10 +43,20 @@ export const CartContainer = () => {
             });
             return
         }
+        if (!formData.name || !formData.phone || !formData.email || !formData.email2) {
+            Swal.fire({
+                title: "¡Error!",
+                text: "Debes completar todos los campos de Facturación.",
+                icon: "error",
+            });
+            return;
+        }
+        if (!isValidPhone(formData.phone)) {
+            return
+        }
 
         const db = getFirestore()
         const queryCollection = collection(db, 'orders')
-
         addDoc(queryCollection, order)
         .then(({ id }) => setIsId(id))
         .catch(err => console.log(err))
@@ -92,19 +115,34 @@ export const CartContainer = () => {
                             <div><strong>{totalPrice() != 0 && <p>Precio Total de la Compra = ${totalPrice()}</p>}</strong></div>
                         </div>
                         <hr />
-                        <div className="text-center " style={{display: "flex", flexDirection: "row", justifyContent: "center"}} >   
+                        <div className="text-center " style={{display: "flex", flexDirection: "row", justifyContent: "center"}} > 
                             <form className="text-center w-50" onSubmit={handleOrders}> 
-                                <div className="inputForm"><input className="form-control w-50 text-center" type="text" placeholder="Ingrese nombre" name="name" onChange={handleOnChange} value={formData.name} /></div>
-                                <div className="inputForm"><input className="form-control w-50 text-center"  type="text" name="phone" placeholder="Ingrese Numero telefonico" onChange={handleOnChange} value={formData.phone} /></div>
-                                <div className="inputForm"><input className="form-control w-50 text-center"  type="text" name="email" placeholder="Ingrese email" onChange={handleOnChange} value={formData.email}/></div>
-                                <div className="inputForm"><input className="form-control w-50 text-center"  type="text" name="email2" placeholder="Conformar email " onChange={handleOnChange} value={formData.email2}/></div>
+                                <div    
+                                    ><h2>Datos de Facturacion</h2>  
+                                </div>
+                                <div className="inputForm"> 
+                                    <input className="form-control w-50 text-center" type="text" placeholder="Ingrese nombre" name="name" onChange={handleOnChange} value={formData.name} />    
+                                </div>
+                                <div className="inputForm"> 
+                                    <input className="form-control w-50 text-center"  type="text" name="phone" placeholder="Ingrese Numero telefonico" onChange={handleOnChange} value={formData.phone} />  
+                                </div>
+                                <div className="inputForm"> 
+                                    <input className="form-control w-50 text-center"  type="text" name="email" placeholder="Ingrese email" onChange={handleOnChange} value={formData.email}/>   
+                                </div>
+                                <div className="inputForm"> 
+                                    <input className="form-control w-50 text-center"  type="text" name="email2" placeholder="Conformar email " onChange={handleOnChange} value={formData.email2}/>  
+                                </div>
                                 <br />
                             </form>
                         </div>
-                        <button className="btn btn-outline-dark" onClick={handleOrders} >Enviar Compra</button>
-                        <br />
-                        <br />
-                        <button className="btn btn-outline-dark" onClick={emptyCart}>Borrar Carrito</button>
+                        <div className="botonesFinalCarrito">
+                            <div className="botonFinal">   
+                                <button className="btn btn-outline-dark" onClick={handleOrders} >Enviar Compra</button>
+                            </div>
+                            <div className="botonFinal">   
+                                <button className="btn btn-outline-dark" onClick={emptyCart}>Borrar Carrito</button>
+                            </div>
+                        </div>
                     </div>
                 </>
             }

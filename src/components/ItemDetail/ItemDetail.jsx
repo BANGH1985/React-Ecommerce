@@ -3,6 +3,7 @@ import { Itemcounter } from "../itemCounter/itemCounter"
 import { useCartContext } from "../../contexts/CartContext"
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import "./itemDetail.css"
 
 export const ItemDetail = ({product}) => { 
     const [ isCount, setIsCount ] = useState(true)
@@ -28,8 +29,14 @@ export const ItemDetail = ({product}) => {
                         <Itemcounter initial={1} stock={15} onAdd={onAdd}/>
                     :
                         <>
-                            <Link className="btn btn-outline-dark" to='/cart' >Ir al carrito de compras</Link>
-                            <Link className="btn btn-outline-dark" to='/' >Seguir comprando</Link>
+                        <div className="contenedorBotonesDetalle">   
+                            <div className="botonesDetalle" >   
+                                <Link className="btn btn-outline-dark" to='/cart' >Ir al carrito de compras</Link>
+                            </div>
+                            <div>   
+                                <Link className="btn btn-outline-dark" to='/' >Seguir comprando</Link>  
+                            </div> 
+                        </div>
                         </>
                 }
             </div>

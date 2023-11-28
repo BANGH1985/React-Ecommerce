@@ -9,7 +9,7 @@
 
 .contenedorOrden{   
     border-style: groove;
-    border-radius: 10%;
+    border-radius: 30px;
     border-color: black;
     background-color: aliceblue;
     margin: 40px;
@@ -51,4 +51,22 @@
 
 .carritoVacio{  
     color: aliceblue;
+}
+
+.botonesFinalCarrito{   
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.botonFinal{    
+    margin: 5px;
+}
+.carritoVacio{  
+    margin: 30px;
+}
+
+.botonHome{ 
+    margin: 40px;
 }
