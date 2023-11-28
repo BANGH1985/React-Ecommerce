@@ -3,3 +3,7 @@
     margin-left: 15px;
     margin-right:15px;
 }
+.contenedorNav{ 
+    border-style: groove;
+    border-radius: 15%;
+}

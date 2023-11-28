@@ -7,7 +7,7 @@ import { NavLink  } from 'react-router-dom';
 
 function NavBar () {
     return (
-        <Navbar collapseOnSelect expand="lg" className="bg-light text-dark navbar-light">
+        <Navbar collapseOnSelect expand="lg" className="bg-light text-dark navbar-light contenedorNav">
             <Container>
                 <img className='imgLogo' src= {Imagen} />
                 <NavLink className={({isActive})=> isActive ? 'btn btn-dark' : 'btn' } to="/">DREAMS</NavLink>
